@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>-🌿SproutLy Home</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="home-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🌿SproutLy</div>
+
+    <ul class="nav-links">
+      <li><a href="home.html" class ="active">Home</a></li>
+      <li><a href="tips.html" class ="active">Tips</a></li>
+      <li><a href="recipes.html" class ="active">Recipes</a></li>
+      <li><a href="analytics.html" class ="active">Analytics</a></li>
+      <li><a href="farm2table.html" class ="active">Farm2Table</a></li>
+      <li><a href="chatbot.html" class ="active">FitBuddy</a></li> 
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION (HOME) -->
+  <section class="hero">
+    <div class="home-container">
+      <h1>Welcome to SproutLy</h1>
+      <h2 id="welcomeMsg"></h2>
+      <p>Your step towards a greener, healthier tomorrow 🌱</p>
+    </div>
+
+    <!-- Two boxes below Welcome -->
+    <div class="info-boxes">
+      <div class="info-box">
+        <h2>About Us</h2>
+        <p>SproutLy helps you make eco-friendly food choices by blending health and sustainability. We aim to make living green simple, smart, and joyful.</p>
+      </div>
+
+      <div class="info-box">
+        <h2>How It Works</h2>
+        <p>Discover sustainable recipes, learn from eco-tips, and track your progress — turning small habits into lasting change.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 SproutLy. All rights reserved.</p>
+      <p>Contact: info@sproutly.com</p>
+    </div>
+  </footer>
+<script>
+window.onload = () => {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const welcomeMsg = document.getElementById("welcomeMsg");
+
+  if (loggedInUser && loggedInUser.name) {
+    welcomeMsg.innerText = "Hello, " + loggedInUser.name + " 🌱";
+  } else {
+    window.location.href = "login.html";
+  }
+};
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  alert("You have logged out!");
+  window.location.href = "login.html";
+}
+</script>
+
+
+</body>
+</html>

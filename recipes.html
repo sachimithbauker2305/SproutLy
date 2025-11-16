@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌿 SproutLy Recipes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🌿SproutLy</div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="tips.html">Tips</a></li>
+      <li><a href="recipes.html" class="active">Recipes</a></li>
+      <li><a href="farm2table.html" class = "active">Farm2Table</a>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="chatbot.html"class ="active">Chatbot</a></li> 
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- RECIPES SECTION -->
+  <section class="recipe-section">
+    <h2>Find SproutLy Healthy Recipes 🍃</h2>
+
+    <form id="recipeForm">
+      <input type="text" id="ingredients" placeholder="Enter ingredients (comma separated)" required>
+      <select id="diet">
+        <option value="all">All</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="non-veg">Non-Veg</option>
+      </select>
+      <button type="submit">Search Recipes</button>
+    </form>
+
+    <!-- RESULTS WILL APPEAR HERE -->
+    <div id="recipeResults" class="tips-grid"></div>
+  </section>
+
+  <!-- SCRIPT LINKS -->
+  <script src="script.js"></script>
+  <script>
+    // ---------------- CHECK LOGIN ----------------
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+    if (!savedUser) window.location.href = "login.html";
+
+    function logout() {
+      localStorage.removeItem("user");
+      alert("You have logged out!");
+      window.location.href = "login.html";
+    }
+
+      
+  </script>
+</body>
+</html>
+

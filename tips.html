@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌿SproutLy - Tips</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">🌿SproutLy</div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="tips.html" class="active">Tips</a></li>
+      <li><a href="recipes.html">Recipes</a></li>
+      <li><a href="analytics.html">Analytics</a></li>
+      <li><a href="farm2table.html">Farm2Table</a></li>
+      <li><a href="chatbot.html">FitBuddy</a></li> 
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="tips-section">
+    <h2>Smart Tips for Greenscape🌱</h2>
+    <div class="tips-grid">
+      <div class="tip-box">
+        <h3>Buy Local & Seasonal</h3>
+        <p>Use the app to discover farmers’ markets and seasonal produce nearby. Supporting local growers reduces transportation emissions and keeps your food fresh.</p>
+      </div>
+
+      <div class="tip-box">
+        <h3>Check Carbon Footprints</h3>
+        <p>Look up foods with lower environmental impact. Plant-based options generally have smaller carbon footprints, helping the planet one meal at a time.</p>
+      </div>
+
+      <div class="tip-box">
+        <h3>Plan Before You Buy</h3>
+        <p>Use the finder to plan meals and shopping lists. Avoiding overbuying reduces food waste and saves money.</p>
+      </div>
+
+      <div class="tip-box">
+        <h3>Prioritize Organic Choices</h3>
+        <p>Discover organic options with fewer pesticides and chemicals. This benefits both your health and soil sustainability.</p>
+      </div>
+
+      <div class="tip-box">
+        <h3>Reduce Food Waste</h3>
+        <p>Track leftovers and find recipes for leftover ingredients. Every small effort helps reduce landfill waste and conserve resources.</p>
+      </div>
+
+      <div class="tip-box">
+        <h3>Support Regenerative Farming</h3>
+        <p>Choose stores or brands that use regenerative practices. They focus on soil health, biodiversity, and sustainable production for long-term impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Check login
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!loggedInUser) {
+      window.location.href = "login.html"; // redirect if not logged in
+    }
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem("loggedInUser"); // match login key
+      alert("You have logged out!");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

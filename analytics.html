@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌿 SproutLy Analytics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="home-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🌿SproutLy</div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="recipes.html" class="active">Recipes</a></li>
+      <li><a href="analytics.html" class="active">Analytics</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="recipe-section">
+    <h2>Database Analytics 📊</h2>
+
+    <div class="analytics-container">
+
+      <!-- Users vs Signup Count -->
+      <div class="chart-card">
+        <h3>Users Signup Count</h3>
+        <canvas id="usersChart"></canvas>
+      </div>
+
+      <!-- Recipes per Diet -->
+      <div class="chart-card">
+        <h3>Recipes per Diet Type</h3>
+        <canvas id="recipesChart"></canvas>
+      </div>
+
+      <!-- Most Popular Ingredients -->
+      <div class="chart-card">
+        <h3>Most Popular Ingredients</h3>
+        <canvas id="ingredientsChart"></canvas>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="analytics.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:5000/analytics/ingredients")
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById("ingredientsList");
+      list.innerHTML = ""; // clear any existing content
+
+      if (data.length === 0) {
+        list.innerHTML = "<li>No ingredients found</li>";
+        return;
+      }
+
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.ingredient} - ${item.count}`;
+        list.appendChild(li);
+      });
+    })
+    .catch(err => {
+      console.error("Error fetching ingredients:", err);
+    });
+});
+</script>
+
+</body>
+</html>

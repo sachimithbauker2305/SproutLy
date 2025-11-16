@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SproutLy - Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌿 SproutLy</h1>
+    <h2>Create Account</h2>
+
+  <form id="signupForm">
+  <input type="text" id="signupName" placeholder="Full Name" required>
+  <input type="email" id="signupEmail" placeholder="Email" required>
+  <input type="password" id="signupPassword" placeholder="Password" required>
+  <button type="submit">Sign Up</button>
+  <p>Already have an account? <a href="login.html">Login here</a></p>
+</form>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("signupName").value.trim();
+  const email = document.getElementById("signupEmail").value.trim();
+  const password = document.getElementById("signupPassword").value.trim();
+
+  if(!name || !email || !password) return alert("All fields are required!");
+
+  if(localStorage.getItem("user_" + email)){
+    return alert("User already exists! Please login.");
+  }
+
+  const user = { name, email, password };
+  localStorage.setItem("user_" + email, JSON.stringify(user));
+
+  alert("Sign up successful! Redirecting to Login...");
+  window.location.href = "login.html";
+});
+</script>
+  
+</body>
+</html>

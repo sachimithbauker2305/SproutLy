@@ -1,0 +1,820 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  
+  background: url('shutterstock-621237140.30eb43 (1).jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+.container {
+  background: #fff;
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  text-align: center;
+  width: 360px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: #2e7d32;
+  font-size: 32px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  margin-bottom: 25px;
+  color: #388e3c;
+  font-weight: 400;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 8px rgba(46,125,50,0.4);
+  background-color: #f0fff0;
+}
+
+button {
+  background: linear-gradient(135deg, #2e7d32, #56ab2f);
+  color: white;
+  border: none;
+  padding: 12px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  transform: scale(1.05);
+}
+
+p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+a {
+  color: #2e7d32;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #145214;
+  text-decoration: underline;
+}
+body.home-page {
+  
+    background: url('shutterstock-621237140.30eb43 (1).jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+
+  color: #fff;
+  background: linear-gradient(to bottom, 
+              rgba(46, 125, 50, 0.9) 0%, 
+              rgba(46, 125, 50, 0.9) 45%, 
+              #f4f4f4 45%,
+              #f4f4f4 100%); 
+  background-image: url('shutterstock-621237140.30eb43 (1).jpg'), 
+                    linear-gradient(to bottom, rgba(46, 125, 50, 0.9) 0%, rgba(46, 125, 50, 0.9) 45%, #f4f4f4 45%, #f4f4f4 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center center; 
+  background-size: 100% 50%, 100% 100%; 
+  background-attachment: fixed, fixed;
+}
+body.home-page {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding-top: 100px; /* Space for the fixed navbar */
+  /* Remove min-height: 100vh here, or ensure the content is tall enough */
+  color: #066021;
+  /* Crucial: Override the centering from the generic 'body' style */
+  display: block; /* Make the body behave normally */
+  align-items: unset;
+  justify-content: unset;
+  height: auto; /* Let the height be determined by the content */
+
+  /* Keep your background styles */
+  background: url('shutterstock-621237140.30eb43 (1).jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+body.home-page::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); 
+  z-index: -1;
+}
+
+/* NAVBAR FIXED AT TOP */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 80%;
+  z-index: 100;
+}
+
+body {
+  margin: 0;
+  padding-top: 80px; /* pushes all content below navbar */
+  font-family: "Poppins", sans-serif;
+  background-color: #f5fdf5;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px; /* taller navbar */
+   background: rgba(46, 125, 50, 0.98);
+  color: white;
+  position: fixed; /* FIXED at top */
+  top: 0;
+  left: 0;
+  width: 100%; /* full width */
+  z-index: 1000;
+   border-radius: 0;
+  height: 80px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.navbar .logo {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-links li a {
+  color: white;
+  color: #ffffff !important;
+
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+  color: #c8e6c9;
+}
+.navbar .nav-links li a.active {
+  text-decoration: underline;
+  color: #c8e6c9;
+}
+.navbar { 
+  padding: 0.5px 0.5px;
+  overflow:visible;
+}
+.home-top {
+  height: 50vh; 
+  background: url('shutterstock-621237140.30eb43 (1).jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Hero Section Enhancements */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Gradient overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  
+  z-index: 0;
+}
+
+.hero {
+  /* ... */
+  min-height: 100vh; /* <-- Problem: Forces Hero to take up the whole screen */
+  /* ... */
+}
+
+
+
+.home-container {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 60px 40px;
+  border-radius: 25px;
+  max-width: 500px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+}
+
+.home-container h1 {
+  font-size: 2.8rem;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.home-container p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #3e8e41;
+}
+
+
+.scroll-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 25px;
+  background: #2e7d32;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.scroll-btn:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+}
+.home-container h1, .home-container h2, .home-container p, .scroll-btn {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+.home-container h1 { animation-delay: 0.3s; }
+.home-container h2 { animation-delay: 0.6s; }
+.home-container p { animation-delay: 0.9s; }
+.scroll-btn { animation-delay: 1.2s; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Glassy floating boxes like hero box */
+.info-boxes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 50px 40px;
+  border-radius: 25px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  color: #2e7d32; /* green text */
+}
+
+.info-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.info-box h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2e7d32;
+  font-family: 'Comfortaa', cursive;
+}
+
+.info-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #3e8e41;
+  text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .info-boxes {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .info-box {
+    width: 85%;
+  }
+}
+
+/* 🌿 Centered Welcome + Boxes Below */
+.hero {
+ 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+  text-align: center;
+}
+
+/* Center main welcome box */
+.home-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px;
+  border-radius: 20px;
+  width: 450px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  margin-bottom: 50px;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Tips Section */
+.tips-section {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.tips-section h2 {
+  color: #1b5e20;
+  font-size: 2.2em;
+  margin-bottom: 50px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tip-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 25px rgba(0, 100, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.tip-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 100, 0, 0.2);
+}
+
+.tip-box h3 {
+  color: #2e7d32;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+.tip-box p {
+  color: #444;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* RECIPES SECTION */
+.recipe-section {
+  background: linear-gradient(135deg, #f0fff4, #e0f7e9);
+  padding: 80px 20px;
+  text-align: center;
+  margin-top: 20px; /* ensures it starts below navbar */
+  padding: 80px 20px; /* your existing padding */
+}
+
+.recipe-section h2 {
+  color: #1b5e20;
+  font-size: 2.4em;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+#recipeForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 50px;
+}
+
+#recipeForm input,
+#recipeForm select {
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  outline: none;
+  min-width: 220px;
+}
+
+#recipeForm input:focus,
+#recipeForm select:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 8px rgba(46,125,50,0.4);
+  background-color: #f0fff0;
+}
+
+#recipeForm button {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #2e7d32, #56ab2f);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#recipeForm button:hover {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  transform: scale(1.05);
+}
+
+.recipe-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: 0 8px 25px rgba(46,125,50,0.15);
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(46,125,50,0.25);
+}
+
+.recipe-card h3 {
+  color: #2e7d32;
+  font-size: 1.5em;
+  margin-bottom: 12px;
+}
+
+.recipe-card p {
+  color: #444;
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.recipe-card p strong {
+  color: #145214;
+}
+
+#recipeResults {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  #recipeForm {
+    flex-direction: column;
+    align-items: center;
+  }
+  #recipeForm input,
+  #recipeForm select,
+  #recipeForm button {
+    width: 85%;
+  }
+}
+/* Farm List */
+.nav-links li a.active {
+  color: #ffffff;       /* keeps it white */
+  border-bottom: 2px solid #ffffff;
+}
+
+.nav-links li a:hover {
+  color: #c8e6c9;       /* light green when hovered */
+}
+
+.farm-list-section {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.farm-list-section h2 {
+  color: #fbfcfb;
+  font-size: 2em;
+  margin-bottom: 50px;
+}
+
+.farm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.farm-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 100, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.farm-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.farm-card h3 {
+  color: #fdfefd;
+  font-size: 1.3em;
+  margin: 20px 20px 10px;
+}
+
+.farm-card p {
+  font-size: 0.95em;
+  margin: 5px 20px;
+}
+
+.order-btn {
+  display: block;
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #66bb6a;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+ 
+}
+
+.order-btn:hover {
+  background-color: #43a047;
+}
+
+.farm-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 100, 0, 0.2);
+}
+
+/* Map Section */
+.map-section {
+  padding: 60px 20px;
+  text-align: center;
+  background: #e8f5e9;
+}
+
+.map-section h2 {
+  color: #1b5e20;
+  margin-bottom: 25px;
+}
+
+
+
+
+/* Force navbar links to be white */
+.navbar .nav-links li a {
+  color: #ffffff !important;
+}
+
+/* Make active page link white with underline */
+.navbar .nav-links li a.active {
+  color: #ffffff !important;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* Optional hover effect (light green) */
+.navbar .nav-links li a:hover {
+  color: #c8e6c9 !important;
+}
+
+#welcomeMsg {
+  color: #2e7d32;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.logout-btn {
+  background-color: #228B22; /* eco green */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* --- */
+/* FOOTER STYLES */
+.main-footer {
+    background: #1b5e20; /* Dark green background */
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px; /* Add some space above the footer */
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #c8e6c9; /* Light green text */
+}
+.mission-impact {
+    /* Remove background-color so it uses the body's light background */
+    padding: 60px 40px; /* Reduced overall padding for compactness */
+    color: #066021;
+}
+
+.mission-impact .content-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mission-side, .impact-side {
+    flex: 1; 
+    min-width: 300px;
+}
+
+/* Update the Mission and Impact H2 style */
+.mission-impact h2 {
+    font-size: 2.2rem;
+    color: #1b5e20; /* Change to a very dark, high-contrast forest green */
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Add a subtle shadow for pop */
+}
+
+/* Mission Cards - Unified Glassy Style */
+.mission-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Reduced gap */
+}
+
+.mission-card {
+    /* Unified Glassy Look */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 35px 30px; /* Made more compact */
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    color: #2e7d32;
+    text-align: center;
+}
+.mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.mission-card h3 {
+    font-size: 1.3rem; /* Slightly smaller title */
+    color: #2e7d32;
+    margin-bottom: 5px;
+}
+
+.mission-card p {
+    color: #3e8e41;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Impact Section - Single Glassy Card with Stats */
+.impact-side {
+    /* Make impact side a single large glassy card */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 40px 30px; /* Made more compact */
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+}
+.impact-side:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.impact-stats {
+    padding-top: 20px;
+}
+
+.stat {
+    margin-bottom: 30px;
+}
+
+.stat-number {
+    font-size: 3rem; /* Slightly smaller number */
+    font-weight: 700;
+    color: #2e7d32; 
+    display: block;
+}
+
+.impact-stats p {
+    font-size: 1rem;
+    color: #3e8e41;
+    margin-top: -5px;
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 992px) {
+    .mission-impact .content-wrapper {
+        flex-direction: column; /* Stack vertically on small screens */
+    }
+}
+/* Add/Update this style to ensure the globe icon is clearly visible */
+.mission-impact .globe-icon {
+    color: #4CAF50; /* Use a brighter green for the icon */
+    margin-right: 10px;
+}
+
+.analytics-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.chart-card h3 {
+  margin-bottom: 20px;
+  color: #2e7d32;
+  font-weight: 600;
+}

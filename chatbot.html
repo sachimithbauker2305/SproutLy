@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌿 Pro Health Coach</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #e8f5e9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  .chat-container {
+    width: 380px;
+    max-width: 95%;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    background: #43a047;
+    color: white;
+    padding: 20px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .chat-body {
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 400px;
+  }
+
+  .chat-footer {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: #43a047;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .user-msg, .bot-msg {
+    padding: 10px 15px;
+    margin: 8px 0;
+    border-radius: 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .user-msg { background: #c8e6c9; align-self: flex-end; }
+  .bot-msg { background: #f1f8e9; align-self: flex-start; }
+
+  .score-container { margin-top: 15px; font-weight: 600; color: #2e7d32; font-size: 1.2rem; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">🌿 Pro Health Coach</div>
+  <div class="chat-body" id="chatBody">
+    <div class="bot-msg">Hi! I’m your Pro Health Coach 🤖. Ready to boost your health habits?</div>
+  </div>
+  <div class="chat-footer" id="chatFooter">
+    <button class="btn" onclick="userAnswer('Yes')">Yes!</button>
+    <button class="btn" onclick="userAnswer('Tell me more')">Tell me more</button>
+  </div>
+</div>
+
+<div class="score-container">
+  🌱 Health Score: <span id="healthScore">0</span> | 📅 Streak: <span id="streakCount">0</span> days
+</div>
+
+<script>
+const chatBody = document.getElementById("chatBody");
+const chatFooter = document.getElementById("chatFooter");
+const healthScoreDisplay = document.getElementById("healthScore");
+const streakDisplay = document.getElementById("streakCount");
+
+// LocalStorage
+let healthScore = localStorage.getItem('healthScore') ? parseInt(localStorage.getItem('healthScore')) : 0;
+let completedChallenges = JSON.parse(localStorage.getItem('completedChallenges')) || [];
+let streakCount = localStorage.getItem('streakCount') ? parseInt(localStorage.getItem('streakCount')) : 0;
+let lastCompletedDay = localStorage.getItem('lastCompletedDay') || null;
+let weeklyProgress = JSON.parse(localStorage.getItem('weeklyProgress')) || {};
+
+healthScoreDisplay.innerText = healthScore;
+streakDisplay.innerText = streakCount;
+
+// Recipes & Challenges
+const recipes = [
+  "Quinoa Salad with Avocado 🥑🥗", "Oatmeal with Berries 🍓🥣",
+  "Green Smoothie with Spinach & Banana 🍌🥬", "Chickpea Stir-fry 🥕🍛",
+  "Lentil Soup with Vegetables 🥣🥕", "Grilled Salmon with Lemon 🍋🐟",
+  "Veggie Buddha Bowl 🥗🌈", "Overnight Chia Pudding with Mango 🥭🍮",
+  "Zucchini Noodles with Pesto 🍝🌿", "Baked Sweet Potato Fries 🍠🔥"
+];
+
+const challenges = [
+  { text: "Drink 2 liters of water 💧", points: 10 },
+  { text: "Walk 5000 steps 🚶‍♂️", points: 10 },
+  { text: "Meditate for 10 minutes 🧘", points: 10 },
+  { text: "Eat 5 servings of fruits & veggies 🥗", points: 10 },
+  { text: "Avoid sugar for one meal 🍬❌", points: 10 },
+  { text: "Stretch for 10 minutes 🧎‍♂️", points: 10 },
+  { text: "Try a 10-minute brisk walk 🏃", points: 10 },
+  { text: "Prepare a healthy smoothie 🍓🥬", points: 10 }
+];
+
+// Expanded questions
+const questions = [
+  { q: "How many hours of sleep do you usually get per night?", opts: ["Less than 6", "6-8", "More than 8"] },
+  { q: "Do you exercise regularly?", opts: ["Yes, daily", "Few times a week", "Rarely"] },
+  { q: "How intense is your exercise?", opts: ["Light", "Moderate", "High"] },
+  { q: "Do you stretch or do mobility exercises?", opts: ["Yes, daily", "Sometimes", "Never"] },
+  { q: "Do you drink enough water daily?", opts: ["Yes, 2L+", "Sometimes", "Rarely"] },
+  { q: "How often do you include fruits & vegetables?", opts: ["Every meal", "Sometimes", "Rarely"] },
+  { q: "How often do you eat processed foods or sugar?", opts: ["Rarely", "Sometimes", "Often"] },
+  { q: "Do you meditate or practice mindfulness?", opts: ["Yes, daily", "Sometimes", "Never"] },
+  { q: "How would you rate your stress level?", opts: ["Low", "Moderate", "High"] },
+  { q: "Would you like a healthy recipe or a challenge now?", opts: ["Recipe", "Challenge"] }
+];
+
+let step = 0;
+
+// Streak & weekly progress
+function checkStreak() {
+  const today = new Date().toDateString();
+  const weekKey = getWeekKey();
+
+  if(!weeklyProgress[weekKey]) weeklyProgress[weekKey] = { daysCompleted: [], points: 0 };
+
+  if(lastCompletedDay !== today){
+    streakCount++;
+    lastCompletedDay = today;
+    streakDisplay.innerText = streakCount;
+    localStorage.setItem('streakCount', streakCount);
+    localStorage.setItem('lastCompletedDay', lastCompletedDay);
+  }
+
+  if(!weeklyProgress[weekKey].daysCompleted.includes(today)){
+    weeklyProgress[weekKey].daysCompleted.push(today);
+  }
+
+  weeklyProgress[weekKey].points = healthScore;
+  localStorage.setItem('weeklyProgress', JSON.stringify(weeklyProgress));
+
+  if([3,5,7].includes(streakCount)){
+    healthScore += 20;
+    updateScore();
+    addMessage(`🎉 Bonus 20 points for your ${streakCount}-day streak! Keep going!`, "bot-msg");
+  }
+}
+
+function getWeekKey() {
+  const now = new Date();
+  const oneJan = new Date(now.getFullYear(),0,1);
+  const week = Math.ceil((((now - oneJan)/86400000)+oneJan.getDay()+1)/7);
+  return `${now.getFullYear()}-W${week}`;
+}
+
+function userAnswer(ans){
+  addMessage(ans, "user-msg");
+  setTimeout(() => handleStep(ans), 500);
+}
+
+function handleStep(ans){
+  chatFooter.innerHTML = "";
+
+  // Give tips for early questions
+  if(step >=0 && step < questions.length-1){
+    if(ans.includes("Less") || ans.includes("Rarely") || ans.includes("Sometimes") || ans.includes("Never") || ans.includes("Often") || ans.includes("Low") || ans.includes("Moderate")){
+      addMessage("Tip: Small improvements can make a big difference! 🌿💪", "bot-msg");
+    } else {
+      addMessage("Great habit! ✅ Keep it up!", "bot-msg");
+    }
+    step++;
+    setTimeout(() => askNextQuestion(), 500);
+    return;
+  }
+
+  if(ans === "Recipe"){
+    const recipe = recipes[Math.floor(Math.random() * recipes.length)];
+    addMessage(`Here's a healthy recipe: ${recipe} 🍽️`, "bot-msg");
+    addButtons(["Recipe", "Challenge", "Weekly Progress", "No"]);
+  } else if(ans === "Challenge"){
+    giveChallenge();
+    addButtons(["Recipe", "Challenge", "Weekly Progress", "No"]);
+  } else if(ans === "Weekly Progress"){
+    showWeeklyProgress();
+    addButtons(["Recipe", "Challenge", "No"]);
+  } else {
+    addMessage("Awesome! Keep practicing these healthy habits every day 🌿💪", "bot-msg");
+  }
+}
+
+function askNextQuestion(){
+  if(step < questions.length){
+    addMessage(questions[step].q, "bot-msg");
+    addButtons(questions[step].opts);
+  }
+}
+
+function giveChallenge(){
+  let available = challenges.filter(c => !completedChallenges.includes(c.text));
+  if(available.length === 0){
+    addMessage("You've completed all challenges! 🎉", "bot-msg");
+    return;
+  }
+  const challenge = available[Math.floor(Math.random() * available.length)];
+  addMessage(`Today's challenge: ${challenge.text} (+${challenge.points} points)`, "bot-msg");
+  healthScore += challenge.points;
+  completedChallenges.push(challenge.text);
+  localStorage.setItem('completedChallenges', JSON.stringify(completedChallenges));
+  updateScore();
+  checkStreak();
+}
+
+function showWeeklyProgress(){
+  const weekKey = getWeekKey();
+  const weekData = weeklyProgress[weekKey] || {daysCompleted: [], points: 0};
+  addMessage(`📊 Weekly Summary:
+- Days completed: ${weekData.daysCompleted.length}
+- Total points: ${weekData.points}
+- Streak: ${streakCount} days
+Keep it up! 🌿💪`, "bot-msg");
+}
+
+function addMessage(txt, cls){
+  const div = document.createElement("div");
+  div.className = cls;
+  div.innerText = txt;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function addButtons(opts){
+  chatFooter.innerHTML = "";
+  opts.forEach(opt=>{
+    const btn = document.createElement("button");
+    btn.className="btn";
+    btn.innerText=opt;
+    btn.onclick=()=>userAnswer(opt);
+    chatFooter.appendChild(btn);
+  });
+}
+
+function updateScore(){
+  healthScoreDisplay.innerText = healthScore;
+  localStorage.setItem('healthScore', healthScore);
+}
+</script>
+
+</body>
+</html>
